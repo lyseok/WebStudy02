@@ -10,11 +10,11 @@
 <body>
 <h1>웹컴 페이지</h1>
 
-<h1>로그인되어있는 사용자 : ${pageContext.request.userPrincipal.realUser.memName }</h1>
+<c:set value="${pageContext.request.userPrincipal }" var="principal"></c:set>
+<h1>로그인되어있는 사용자 : ${principal.realUser.memName }</h1>
 <pre>
 	차후에 web filter구조를 통해Principal구현체로 인증된 사용자를 표현할 예정
 </pre>
-<c:set value="${pageContext.request.userPrincipal }" var="principal"></c:set>
 <c:if test="${not empty principal.realUser.memName }">
 	${principal.realUser.memName }님<br/> ${principal.realUser.memMail }<br/> 생일 : ${principal.realUser.memBir }<br/><a href='<c:url value="/login/logout"></c:url>'>로그아웃</a>
 </c:if>

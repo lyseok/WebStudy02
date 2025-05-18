@@ -9,6 +9,7 @@
 			, MT_CONTENT
 		  FROM TB_MBTIDESC
 	</select>
+	
 	<select id="selectMbti" resultType="MbtiVO">
 		SELECT
 			MT_SORT
@@ -18,9 +19,27 @@
 		  FROM TB_MBTIDESC
 		 WHERE MT_TYPE = #{mtType}
 	</select>
-	<insert id="insertMbti">
 	
+	<insert id="insertMbti">
+		INSERT INTO TB_MBTIDESC (
+			MT_TYPE
+			, MT_TITLE
+			, MT_CONTENT)
+		VALUES (
+			#{mtType}
+			, #{mtTitle}
+			, #{mtContent})
 	</insert>
-	<update id="updateMbti"></update>
-	<delete id="deleteMbti"></delete>
+	
+	<update id="updateMbti">
+		UPDATE TB_MBTIDESC
+		   SET MT_TITLE = #{mtTitle}, 
+		       MT_CONTENT = #{mtContent}
+		 WHERE MT_TYPE = #{mtType} 
+	</update>
+	
+	<delete id="deleteMbti">
+		DELETE FROM TB_MBTIDESC
+ 		 WHERE MT_TYPE = #{mtType}	
+	</delete>
 </mapper>

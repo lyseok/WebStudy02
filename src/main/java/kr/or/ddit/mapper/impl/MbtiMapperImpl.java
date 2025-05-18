@@ -14,8 +14,11 @@ public class MbtiMapperImpl implements MbtiMapper {
 	
 	@Override
 	public int insertMbti(MbtiVO mbti) {
-		// TODO Auto-generated method stub
-		return 0;
+		try (SqlSession sqlSession = factory.openSession()) {
+			int res = sqlSession.insert("kr.or.ddit.mapper.MbtiMapper.insertMbti", mbti);
+			if(res >= 1) sqlSession.commit();
+			return res;
+		}
 	}
 
 	@Override
@@ -34,14 +37,20 @@ public class MbtiMapperImpl implements MbtiMapper {
 
 	@Override
 	public int updateMbti(MbtiVO mbti) {
-		// TODO Auto-generated method stub
-		return 0;
+		try (SqlSession sqlSession = factory.openSession()) {
+			int res = sqlSession.update("kr.or.ddit.mapper.MbtiMapper.updateMbti", mbti);
+			if(res >= 1) sqlSession.commit();
+			return res;
+		}
 	}
 
 	@Override
 	public int deleteMbti(String mtType) {
-		// TODO Auto-generated method stub
-		return 0;
+		try (SqlSession sqlSession = factory.openSession()) {
+			int res = sqlSession.delete("kr.or.ddit.mapper.MbtiMapper.deleteMbti", mtType);	
+			if(res >= 1) sqlSession.commit();
+			return res;
+		}
 	}
 
 }
