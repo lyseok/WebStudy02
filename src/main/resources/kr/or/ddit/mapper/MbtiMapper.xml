@@ -33,8 +33,8 @@
 	
 	<update id="updateMbti">
 		UPDATE TB_MBTIDESC
-		   SET MT_TITLE = #{mtTitle}, 
-		       MT_CONTENT = #{mtContent}
+		   SET MT_TITLE = #{mtTitle}
+		       , MT_CONTENT = #{mtContent}
 		 WHERE MT_TYPE = #{mtType} 
 	</update>
 	

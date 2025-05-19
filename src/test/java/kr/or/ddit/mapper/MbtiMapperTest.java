@@ -5,13 +5,18 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
 
 import kr.or.ddit.mapper.impl.MbtiMapperImpl;
+import kr.or.ddit.vo.MbtiVO;
 
 class MbtiMapperTest {
 	MbtiMapper mapper = new MbtiMapperImpl();
 	
 	@Test
 	void testInsertMbti() {
-		fail("Not yet implemented");
+		MbtiVO newMbti = new MbtiVO("AAAA");
+		newMbti.setMtTitle("AAAA 타입 요약");
+		newMbti.setMtContent("content");
+		int cnt = mapper.insertMbti(newMbti);
+		assertEquals(1, cnt);
 	}
 
 	@Test
@@ -22,17 +27,22 @@ class MbtiMapperTest {
 
 	@Test
 	void testSelectMbti() {
-		System.out.println(mapper.selectMbti("istp"));
+		assertNotNull(mapper.selectMbti("istp"));
 	}
 
 	@Test
 	void testUpdateMbti() {
-		fail("Not yet implemented");
+		MbtiVO newMbti = mapper.selectMbti("AAAA");
+		newMbti.setMtTitle("AAAA 수정");
+		newMbti.setMtContent("content 수정");
+		int cnt = mapper.updateMbti(newMbti);
+		assertEquals(1, cnt);
 	}
 
 	@Test
 	void testDeleteMbti() {
-		fail("Not yet implemented");
+		int cnt = mapper.deleteMbti("AAAA");
+		assertEquals(1, cnt);
 	}
 
 }
