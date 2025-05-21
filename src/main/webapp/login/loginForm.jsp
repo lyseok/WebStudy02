@@ -18,7 +18,7 @@
 
 <form action="${pageContext.request.contextPath }/login/loginCheck" method="post">
 	<input type="text" name="username" placeholder="사용자의 식별자">
-	<input type="text" name="password" placeholder="본임일을 증명할 credential">
+	<input type="password" name="password" placeholder="본임일을 증명할 credential">
 	<button type="submit">로그인</button>
 </form>
 

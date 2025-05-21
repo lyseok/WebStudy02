@@ -3,6 +3,8 @@ package kr.or.ddit.member.service;
 import java.lang.reflect.InvocationTargetException;
 
 import org.apache.commons.beanutils.BeanUtils;
+import org.springframework.security.crypto.factory.PasswordEncoderFactories;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import kr.or.ddit.mapper.MemberMapper;
 import kr.or.ddit.mapper.impl.MemberMapperImpl;
@@ -14,6 +16,7 @@ import kr.or.ddit.vo.MemberVO;
  */
 public class AuthenticateServiceImpl implements AuthenticateService {
 	private MemberMapper dao = new MemberMapperImpl(); 
+	private PasswordEncoder pe = PasswordEncoderFactories.createDelegatingPasswordEncoder();
 	
 	@Override
 	public boolean authenticate(MemberVO inputData) {
@@ -21,7 +24,7 @@ public class AuthenticateServiceImpl implements AuthenticateService {
 		if(saved!=null) {
 			String inputPass = inputData.getMemPassword();
 			String savedPass = saved.getMemPassword();
-			boolean result = savedPass.equals(inputPass);
+			boolean result = pe.matches(inputPass, savedPass);
 			if(result) {
 				try {
 					BeanUtils.copyProperties(inputData, saved);
