@@ -11,21 +11,38 @@ import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
-
 /**
- * 상품 관리를 위한 Domain Layer(JavaBean)
- * 객체 생성 패턴이 Builder 패턴 구현 단계
- * 1. 모든 프로퍼티를 한번에 받을 수 있는 생성자 정의
- * 2. 해당 생성자는 클래스 내부에서만 사용 가능하능한 private 선언.
- * 3. 외부에서 객체 생성에 사용할 수 있도록 static 내부 클래스로 builder구현
- * 	ex) ProdVOBuilder
- * 4. Builder 내부에서 build()메소드로 객체를 생성함
- * 5. build 대상이 되는 객체가 가진 프로퍼티를 결정할 수 있는 setter역할 메소드 구현
- * 	-> 메소드 체이닝 구조를 위해 해당 메소드 내부에서 builder가 다시 반환됨
+ * 상품 관리를 위한 Domain Layer (JavaBean)
+ * 객체 생성 패턴인 Builder 퍁천 구현 단계
+ * 1. 모든 프로퍼티를 한번에 받을 수 있는 생성자 정의 ex) @AllArgsConstructor
+ * 2. 해당 생성자는 이 클래스 내부에서만 사용할 수 있도록 접근 제한(private) 선언 -> @AllArgsConstructor(access = AccessLevel.PRIVATE)
+ * 3. 외부에서 객체 생성에 사용할 수 있도록 static 내부 클래스로 Builder 구현
+ * 	  ex) ProdVoBuilder(@Builder 으로 생성한 빌더)
+ * 4. Builder 내부에서 Build() 메소드로 객체를 생성함. (빈 객체 생성됨)
+ * 5. build 대상이 되는 객체가 가진 프로퍼치를 결정할 수 있는 setter 역할 메서드 구현
+ * 	  -> 메소드 체이닝 구조를 위해 해당 메소드 내부에서 Builder 가 다시 반환됨
+ * 
+ * ★★★★★ Mybatis를 이용해서 여러개의 테이블을 조인하는 방법
+ * 1. 사용할 테이블의 관계를 파악 (메인 테이블을 중심으로 파악)
+ * 		1 : 1	=>	PROD(1) : BUYER(1) - 자식은 부모를 하나만 가질 수 있음
+ * 		1 : N	=>	BUYER(1): PROD(N) - 부모는 여러명의 자식을 가질 수 있음
+ * 
+ * 2. 조인 쿼리 작성
+ * 3. 조인한 테이블 갯수만큼 VO(D.L) 생성
+ * 		ProdVO, BuyerVO
+ * 4. 테이블의 구조를 VO에 반영.
+ *		PROD(1) : BUYER(1)
+ *		-> ProdVO has A(한개) BuyerVO
+ *		BUYER(1): PROD(N)
+ *		-> BuyerVO has Many ProdVO
+ * 5. resultType 대신 resultMap 수동 바인드 설정
+ * 		1:1 (has A) 	=> association 으로 바인드
+ * 		1:N (has Many)  => collection 으로 바인드
+ * 
  */
 @Data
-@EqualsAndHashCode(of = "prodId")
-@NoArgsConstructor // vo를 build패턴을 이용하려면 기본생성자도 생성해야 한다
+@EqualsAndHashCode(of="prodId")
+@NoArgsConstructor
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 @Builder
 public class ProdVO implements Serializable{
@@ -50,4 +67,7 @@ public class ProdVO implements Serializable{
 	private Integer prodQtyin;
 	private Integer prodQtysale;
 	private Integer prodMileage;
+	
+	private LprodVO lprod;	// has A 관계 (소유격 - pord가 다른 vo들을 가지고 있다)
+	private BuyerVO buyer;	// has 관계 
 }

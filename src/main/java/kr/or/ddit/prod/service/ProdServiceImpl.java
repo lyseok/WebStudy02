@@ -4,11 +4,11 @@ import java.util.List;
 import java.util.Optional;
 
 import kr.or.ddit.mapper.ProdMapper;
-import kr.or.ddit.mapper.impl.ProdMapperImpl;
+import kr.or.ddit.mapper.impl.ProdMpperImpl;
 import kr.or.ddit.vo.ProdVO;
 
 public class ProdServiceImpl implements ProdService {
-	private ProdMapper mapper = new ProdMapperImpl();
+	private ProdMapper mapper = new ProdMpperImpl();
 	
 	@Override
 	public void createProd(ProdVO prod) {

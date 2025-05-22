@@ -6,9 +6,11 @@ import org.junit.jupiter.api.Test;
 
 import kr.or.ddit.mapper.ProdMapper;
 import kr.or.ddit.vo.ProdVO;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 class ProdMapperImplTest {
-	private ProdMapper mapper = new ProdMapperImpl();
+	private ProdMapper mapper = new ProdMpperImpl();
 	
 	@Test
 	void testInsertProd() {
@@ -32,6 +34,12 @@ class ProdMapperImplTest {
 			System.out.println(prod);
 		});
 		assertNotNull(mapper.selectProdList());
+	}
+	
+	@Test
+	void testSelectProdListForMap() {
+		mapper.selectProdListForMap()
+			.forEach(map -> log.info("===> {}", map.get("BUYER_ADD1")));
 	}
 
 	@Test

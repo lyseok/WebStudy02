@@ -23,7 +23,7 @@ import kr.or.ddit.vo.ProdVO;
  * 5. 뷰를 선택
  * 6. 뷰로 이동(forward, redirect) 
  */
-@WebServlet("/prod/prodList.do")
+@WebServlet({"/prod/prodList.do", "/ajax/prod/prodList.do"})
 public class ProdListControllerServlet extends HttpServlet {
 	private ProdService service = new ProdServiceImpl();
 	
