@@ -27,6 +27,29 @@
             <span class="pc-mtext">상품목록</span>
           </a>
         </li>
+        <li class="pc-item">
+          <a href="${pageContext.request.contextPath }/prod/prodInsert.do" class="pc-link">
+            <span class="pc-micon"><i class="ti ti-typography"></i></span>
+            <span class="pc-mtext">신규 상품 등록</span>
+          </a>
+        </li>
+        
+        <li class="pc-item pc-caption">
+          <label>제조사관리</label>
+          <i class="ti ti-dashboard"></i>
+        </li>
+        <li class="pc-item">
+          <a href="${pageContext.request.contextPath }/buyer/buyerList.do" class="pc-link">
+            <span class="pc-micon"><i class="ti ti-typography"></i></span>
+            <span class="pc-mtext">제조사목록</span>
+          </a>
+        </li>
+        <li class="pc-item">
+          <a href="${pageContext.request.contextPath }/buyer/buyerInsert.do" class="pc-link">
+            <span class="pc-micon"><i class="ti ti-typography"></i></span>
+            <span class="pc-mtext">신규 제조사 등록</span>
+          </a>
+        </li>
        
         <li class="pc-item pc-caption">
           <label>Pages</label>

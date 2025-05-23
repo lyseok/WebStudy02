@@ -5,7 +5,16 @@
     <!-- encoders are assigned the type
          ch.qos.logback.classic.encoder.PatternLayoutEncoder by default -->
     <encoder>
+<!--       <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{15} -%kvp- %msg%n</pattern> -->
       <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{15} -%kvp- %msg%n</pattern>
+    </encoder>
+  </appender>
+  <appender name="myAppender" class="ch.qos.logback.core.ConsoleAppender">
+    <!-- encoders are assigned the type
+         ch.qos.logback.classic.encoder.PatternLayoutEncoder by default -->
+    <encoder>
+<!--       <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{15} -%kvp- %msg%n</pattern> -->
+      <pattern>%-5level %logger{15} -%kvp- %msg%n</pattern>
     </encoder>
   </appender>
 	
@@ -14,6 +23,6 @@
   <logger name="jdbc.resultsettable" level="info"/>
 	
   <root level="error">
-    <appender-ref ref="STDOUT" />
+    <appender-ref ref="myAppender" />
   </root>
 </configuration>

@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Buyer Detail</title>
 </head>
 <body>
 	<main class="container mt-5">
@@ -40,7 +40,14 @@
 				</table>
 			</td>
 			</tr>
-
+			<tr>
+				<td colspan="2">
+				<c:url value="/buyer/buyerUpdate.do" var="updateURL">
+					<c:param name="what" value="${buyer.buyerId }"/>
+				</c:url>
+					<a class="btn btn-primary" href="${updateURL }">수정</a>
+				</td>
+			</tr>
 			<tr>
 				<th>기본주소</th>
 				<td>${buyer.buyerAdd1}</td>

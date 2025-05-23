@@ -2,7 +2,7 @@ package kr.or.ddit.buyer.controller;
 
 import java.io.IOException;
 
-import org.jsoup.internal.StringUtil;
+import org.apache.commons.lang3.StringUtils;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -33,7 +33,7 @@ public class BuyerDetailControllerServlet extends HttpServlet{
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String buyerId = req.getParameter("what");
 		log.info("param: {}", buyerId);
-		if(StringUtil.isBlank(buyerId)) {
+		if(StringUtils.isBlank(buyerId)) {
 			resp.sendError(400, "필수 파라미터 누락");
 			return;
 		}

@@ -4,8 +4,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+<title>상품상세</title>
+<script type="text/javascript">
+	// 더미 주석
+</script>
 </head>
 <body>
 	<main class="container mt-5">

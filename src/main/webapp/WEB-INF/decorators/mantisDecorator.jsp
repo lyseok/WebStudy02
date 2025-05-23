@@ -4,7 +4,7 @@
 <!-- [Head] start -->
 
 <head>
-  <title>Home | Mantis Bootstrap 5 Admin Template</title>
+  <title>Home | <sitemesh:write property="title" /></title>
   <!-- [Meta] -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
@@ -13,6 +13,8 @@
   <meta name="keywords" content="Mantis, Dashboard UI Kit, Bootstrap 5, Admin Template, Admin Dashboard, CRM, CMS, Bootstrap Admin Template">
   <meta name="author" content="CodedThemes">
 <%@include file="/WEB-INF/fragments/mantisPreStyle.jsp" %>
+
+<sitemesh:write property="head" />
 
 </head>
 <!-- [Head] end -->

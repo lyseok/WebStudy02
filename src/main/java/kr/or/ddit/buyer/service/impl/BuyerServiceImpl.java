@@ -1,5 +1,6 @@
 package kr.or.ddit.buyer.service.impl;
 
+import java.util.List;
 import java.util.Optional;
 
 import kr.or.ddit.buyer.service.BuyerService;
@@ -13,6 +14,21 @@ public class BuyerServiceImpl implements BuyerService {
 	@Override
 	public Optional<BuyerVO> readBuyer(String buyerId) {
 		return Optional.ofNullable(mapper.selectBuyer(buyerId));
+	}
+
+	@Override
+	public List<BuyerVO> readBuyerList() {
+		return mapper.selectBuyerList();
+	}
+
+	@Override
+	public void createBuyer(BuyerVO buyer) {
+		mapper.insertBuyer(buyer);
+	}
+
+	@Override
+	public void modifyBuyer(BuyerVO buyer) {
+		mapper.updateBuyer(buyer);
 	}
 
 }

@@ -3,6 +3,13 @@ package kr.or.ddit.vo;
 import java.io.Serializable;
 import java.util.List;
 
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
+import kr.or.ddit.validate.DeleteGroup;
+import kr.or.ddit.validate.InsertGroup;
+import kr.or.ddit.validate.UpdateGroup;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -17,23 +24,36 @@ import lombok.EqualsAndHashCode;
 @Data
 @EqualsAndHashCode(of="buyerId")
 public class BuyerVO implements Serializable{
-	private String buyerAdd1;
-	private String buyerAdd2;
-	private String buyerComtel;
-	private String buyerFax;
-	private String buyerMail;
-	private String buyerCharger;
-	private String buyerTelext;
+	@NotBlank(groups = {UpdateGroup.class, DeleteGroup.class})
 	private String buyerId;
+	@NotBlank
 	private String buyerName;
+	@NotBlank
 	private String lprodGu;
+	@NotBlank
 	private String buyerBank;
+	@NotBlank
 	private String buyerBankno;
+	@NotBlank
 	private String buyerBankname;
 	private String buyerZip;
+	private String buyerAdd1;
+	private String buyerAdd2;
+	@NotBlank
+	private String buyerComtel;
+	private String buyerFax;
+	@NotBlank
+	@Email
+	private String buyerMail;
+	@NotBlank
+	private String buyerCharger;
+	private String buyerTelext;
 	
+//	@NotNull
 	private LprodVO lprod;	// has a
 	
+//	@NotNull
+//	@NotEmpty
 	private List<ProdVO> prodList; // has Many
 }
 

@@ -42,4 +42,86 @@
 			, PROD_PRICE			
 		  FROM BUYERVIEW LEFT OUTER JOIN PROD ON (BUYERVIEW.BUYER_ID=PROD.BUYER_ID)
 	</select>
+	
+	<select id="selectBuyerList" resultMap="BuyerMap">
+		WITH BUYERVIEW AS(
+			SELECT 
+				BUYER_ID
+				, BUYER_NAME
+				, LPROD_GU
+				, BUYER_BANK
+				, BUYER_ADD1
+				, BUYER_COMTEL
+				, BUYER_CHARGER
+				, LPROD_NAME
+			  FROM BUYER NATURAL JOIN LPROD
+		)
+		SELECT 
+			BUYERVIEW.*
+			, PROD_ID
+			, PROD_NAME
+			, PROD_COST
+			, PROD_PRICE			
+		  FROM BUYERVIEW LEFT OUTER JOIN PROD ON (BUYERVIEW.BUYER_ID=PROD.BUYER_ID)
+	</select>
+	
+
+   <insert id="insertBuyer">
+      <!-- order: 순서지정  -->
+      <selectKey resultType="string" keyProperty="buyerId" order="BEFORE">
+      	SELECT 
+		    #{lprodGu} ||
+		    LPAD(NVL(TO_NUMBER(SUBSTR(MAX(BUYER_ID), LENGTH(#{lprodGu}) + 1)), 0) + 1, 2, '0')
+		FROM BUYER
+		WHERE LPROD_GU = #{lprodGu}
+      </selectKey>
+       INSERT INTO buyer (
+          buyer_id,
+          buyer_name,
+          lprod_gu,
+          buyer_bank,
+          buyer_bankno,
+          buyer_bankname,
+          buyer_zip,
+          buyer_add1,
+          buyer_add2,
+          buyer_comtel,
+          buyer_fax,
+          buyer_mail,
+          buyer_charger,
+          buyer_telext
+      ) VALUES (
+         #{buyerId},
+         #{buyerName},
+         #{lprodGu},
+         #{buyerBank},
+         #{buyerBankno},
+         #{buyerBankname},
+         #{buyerZip},
+         #{buyerAdd1},
+         #{buyerAdd2},
+         #{buyerComtel},
+         #{buyerFax},
+         #{buyerMail},
+         #{buyerCharger},
+         #{buyerTelext}         
+      )
+   </insert>
+   
+   <update id="updateBuyer">
+   		UPDATE BUYER
+   		SET
+   			BUYER_BANK = #{buyerBank}
+   			, BUYER_BANKNO = #{buyerBankno}
+   			, BUYER_BANKNAME = #{buyerBankname}
+   			, BUYER_ZIP = #{buyerZip}
+   			, BUYER_ADD1 = #{buyerAdd1}
+   			, BUYER_ADD2 = #{buyerAdd2}
+   			, BUYER_COMTEL = #{buyerComtel}
+   			, BUYER_FAX = #{buyerFax}
+   			, BUYER_MAIL = #{buyerMail}
+   			, BUYER_CHARGER = #{buyerCharger}
+   			, BUYER_TELEXT = #{buyerTelext}
+   		WHERE BUYER_ID = #{buyerId}
+   </update>
 </mapper>

@@ -67,6 +67,18 @@
 		    <artifactId>commons-lang3</artifactId>
 		    <version>3.17.0</version>
 		</dependency>
+		<!-- java bean vaildation 지원 -->
+		<dependency>
+		    <groupId>org.hibernate.validator</groupId>
+		    <artifactId>hibernate-validator</artifactId>
+		    <version>9.0.0.Final</version>
+		</dependency>
+		<!-- 검증 메시지를 만들어주는 역활 -->
+		<dependency>
+		    <groupId>org.glassfish.expressly</groupId>
+		    <artifactId>expressly</artifactId>
+		    <version>6.0.0</version>
+		</dependency>
 		
 		<!-- jsoup -->
 		<dependency>
